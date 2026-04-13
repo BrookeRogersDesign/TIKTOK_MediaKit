@@ -395,6 +395,101 @@
             text-align: center;
             letter-spacing: 0.5px;
         }
+
+        /* ── MOBILE RESPONSIVE ── */
+        @media (max-width: 768px) {
+
+            .bio-section {
+                padding: 50px 28px;
+            }
+
+            .bio-text {
+                font-size: 17px;
+            }
+
+            .metrics-section,
+            .audience-section,
+            .pillars-section,
+            .growth-section,
+            .why-section,
+            .videos-section,
+            .offerings-section {
+                padding: 50px 28px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .metric-number {
+                font-size: 36px;
+            }
+
+            .audience-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumb {
+                aspect-ratio: 16/9;
+            }
+
+            .offerings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .growth-big {
+                font-size: 80px;
+            }
+
+            .why-text {
+                font-size: 18px;
+            }
+
+            .pillar-tag {
+                padding: 10px 18px;
+                font-size: 9px;
+            }
+
+            .contact-script {
+                font-size: 38px;
+            }
+
+            .contact-email {
+                font-size: 16px;
+                word-break: break-all;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metric-number {
+                font-size: 30px;
+            }
+
+            .metric-label {
+                font-size: 8px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .growth-big {
+                font-size: 64px;
+            }
+        }
     </style>
 </head>
 <body>
