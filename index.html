@@ -117,23 +117,85 @@
 
         .top-nav.scrolled a:hover { color: var(--red); opacity: 1; }
 
-        .nav-toggle { display: none; }
+
+        /* ── MOBILE NAV (hamburger + full-screen sheet) ── */
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 130;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--dark);
+            transition: transform 0.28s ease, opacity 0.2s ease;
+        }
+
+        body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+        body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         @media (max-width: 700px) {
+            .nav-toggle { display: flex; }
+
             .top-nav {
-                left: 0;
-                right: 0;
+                position: fixed;
+                inset: 0;
+                left: 0; right: 0; top: 0; bottom: 0;
+                background: var(--cream);
+                backdrop-filter: none;
+                border: none;
+                flex-direction: column;
+                align-items: center;
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 16px;
-                padding: 16px 14px;
+                gap: 30px;
+                padding: 0;
+                z-index: 120;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-8px);
+                transition: opacity 0.28s ease, transform 0.28s ease;
             }
-            .top-nav a { font-size: 10px; letter-spacing: 1.5px; }
+
+            body.nav-open .top-nav {
+                opacity: 1;
+                pointer-events: auto;
+                transform: none;
+            }
+
+            .top-nav a,
+            .top-nav.scrolled a {
+                color: var(--dark);
+                text-shadow: none;
+                font-size: 20px;
+                letter-spacing: 3px;
+                font-weight: 700;
+            }
+
             .top-nav.scrolled {
+                background: var(--cream);
+                border: none;
+                padding: 0;
                 justify-content: center;
-                padding: 12px 14px;
             }
         }
+
 
         /* ── HEADER ── */
         header {
@@ -872,17 +934,23 @@
         }
 
         /* fixed slot sizes — set per item in videos.js */
-        .g-item              { grid-column: span 1; aspect-ratio: 4 / 5; }   /* default — all photos */
-        .g-item.g-square     { grid-column: span 1; aspect-ratio: 1 / 1; }
-        .g-item.g-wide       { grid-column: span 2; aspect-ratio: 8 / 5; }
-        .g-item.g-big        { grid-column: span 2; aspect-ratio: 4 / 3; }
-        .g-item.g-tall       { grid-column: span 1; aspect-ratio: 2 / 3; }
-        .g-item.g-banner     { grid-column: span 4; aspect-ratio: 16 / 6; }
+        .g-item              { grid-column: span 1; }
+        .g-item.g-square     { grid-column: span 1; }
+        .g-item.g-wide       { grid-column: span 2; }
+        .g-item.g-big        { grid-column: span 2; }
+        .g-item.g-tall       { grid-column: span 1; }
+        .g-item.g-banner     { grid-column: span 4; }
+
+        /* every tile fills its row exactly — rows stay flush no matter the shape */
+        .g-item.g-auto       { grid-column: span 1; }
+        .g-item.g-auto.is-landscape { grid-column: span 2; }
+
 
         .g-item {
             position: relative;
             overflow: hidden;
             background: var(--red-light);
+            height: 100%;
         }
 
         .g-item img,
@@ -1009,6 +1077,10 @@
 
 
     <!-- TOP NAV -->
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
     <nav class="top-nav" id="topNav">
         <a onclick="goTo('about')">About</a>
         <a href="gallery.html">Gallery</a>
@@ -1453,11 +1525,19 @@
             }).join('');
         }
 
-        if (typeof VIDEOS !== 'undefined') {
-            renderRail('rail-overall',    VIDEOS.rails.overall);
-            renderRail('rail-lately',     VIDEOS.rails.lately);
-            renderRail('rail-engagement', VIDEOS.rails.engagement);
-        }
+        (async function () {
+            var V = (typeof VIDEOS !== 'undefined') ? VIDEOS : null;
+            if (!V || !V.rails) {
+                try {
+                    var txt = await fetch('videos.js?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); });
+                    V = new Function(txt + '; return VIDEOS;')();
+                } catch (e) {}
+            }
+            if (!V || !V.rails) return;
+            renderRail('rail-overall',    V.rails.overall);
+            renderRail('rail-lately',     V.rails.lately);
+            renderRail('rail-engagement', V.rails.engagement);
+        })();
 
 
         // Nav: scroll to about, or open + scroll to contact tab
@@ -1495,6 +1575,22 @@
             window.addEventListener('scroll', onScroll, { passive: true });
             window.addEventListener('resize', onScroll);
             onScroll();
+        })();
+
+        // Mobile menu
+        (function () {
+            var btn = document.getElementById('navToggle');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var open = document.body.classList.toggle('nav-open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.querySelectorAll('.top-nav a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    document.body.classList.remove('nav-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
         })();
     </script>
 

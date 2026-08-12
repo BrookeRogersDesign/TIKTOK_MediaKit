@@ -24,7 +24,9 @@ const VIDEOS = {
        (none)     1 column,  4:5   <- all photos use this
        "tall"     1 column,  2:3
        "square"   1 column,  1:1
-       "wide"     2 columns, 8:5   <- good for video
+       "auto"     videos only — slot matches the clip's real shape
+                  (vertical = 1 column, horizontal = 2 columns)
+       "wide"     2 columns, 8:5
        "big"      2 columns, 4:3
        "banner"   4 columns, 16:6  full-width strip
 
@@ -34,38 +36,38 @@ const VIDEOS = {
   gallery: [
     { src: "Tezza-0384.JPG", size: "", caption: "" },
     { src: "Tezza-0806.JPG", size: "", caption: "" },
-    { src: "img_2010-2.mp4", size: "wide", caption: "" },
-    { src: "img_4994.mp4", size: "wide", caption: "" },
+    { src: "img_2010-2.mp4", size: "auto", caption: "" },
+    { src: "img_4994.mp4", size: "auto", caption: "" },
     { src: "Tezza-0898.JPG", size: "", caption: "" },
     { src: "Tezza-1302.JPG", size: "", caption: "" },
     { src: "Tezza-1447.JPG", size: "", caption: "" },
     { src: "Tezza-1481.JPG", size: "", caption: "" },
-    { src: "img_8057.mp4", size: "wide", caption: "" },
-    { src: "img_8061.mp4", size: "wide", caption: "" },
+    { src: "img_8057.mp4", size: "auto", caption: "" },
+    { src: "img_8061.mp4", size: "auto", caption: "" },
     { src: "Tezza-1867.JPG", size: "", caption: "" },
     { src: "Tezza-2269.JPG", size: "", caption: "" },
     { src: "Tezza-2604.JPG", size: "", caption: "" },
     { src: "Tezza-3444.JPG", size: "", caption: "" },
-    { src: "img_8062.mp4", size: "wide", caption: "" },
-    { src: "img_8065.mp4", size: "wide", caption: "" },
+    { src: "img_8062.mp4", size: "auto", caption: "" },
+    { src: "img_8065.mp4", size: "auto", caption: "" },
     { src: "Tezza-3578.JPG", size: "", caption: "" },
     { src: "Tezza-3772.JPG", size: "", caption: "" },
     { src: "Tezza-5495.JPG", size: "", caption: "" },
     { src: "Tezza-5933.JPG", size: "", caption: "" },
-    { src: "img_8078.mp4", size: "wide", caption: "" },
-    { src: "img_8156.mp4", size: "wide", caption: "" },
+    { src: "img_8078.mp4", size: "auto", caption: "" },
+    { src: "img_8156.mp4", size: "auto", caption: "" },
     { src: "Tezza-6306.JPG", size: "", caption: "" },
     { src: "Tezza-6336.JPG", size: "", caption: "" },
     { src: "Tezza-6649.JPG", size: "", caption: "" },
     { src: "Tezza-8567.JPG", size: "", caption: "" },
-    { src: "img_8234.mp4", size: "wide", caption: "" },
-    { src: "img_8403.mp4", size: "wide", caption: "" },
+    { src: "img_8234.mp4", size: "auto", caption: "" },
+    { src: "img_8403.mp4", size: "auto", caption: "" },
     { src: "Tezza-9014.JPG", size: "", caption: "" },
     { src: "Tezza-9205.JPG", size: "", caption: "" },
     { src: "Tezza-9424.JPG", size: "", caption: "" },
     { src: "Tezza-9609.JPG", size: "", caption: "" },
-    { src: "img_8453.mp4", size: "wide", caption: "" },
-    { src: "49a724b7-e453-41fb-931f-3823ff3f0bed.mp4", size: "", caption: "" }
+    { src: "img_8453.mp4", size: "auto", caption: "" },
+    { src: "49a724b7-e453-41fb-931f-3823ff3f0bed.mp4", size: "auto", caption: "" }
   ],
 
   rails: {

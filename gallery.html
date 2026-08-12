@@ -107,23 +107,85 @@
 
         .top-nav.scrolled a:hover { color: var(--red); opacity: 1; }
 
-        .nav-toggle { display: none; }
+
+        /* ── MOBILE NAV (hamburger + full-screen sheet) ── */
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 130;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: rgba(255,255,255,0.92);
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: var(--dark);
+            transition: transform 0.28s ease, opacity 0.2s ease;
+        }
+
+        body.nav-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
+        body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         @media (max-width: 700px) {
+            .nav-toggle { display: flex; }
+
             .top-nav {
-                left: 0;
-                right: 0;
+                position: fixed;
+                inset: 0;
+                left: 0; right: 0; top: 0; bottom: 0;
+                background: var(--cream);
+                backdrop-filter: none;
+                border: none;
+                flex-direction: column;
+                align-items: center;
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 16px;
-                padding: 16px 14px;
+                gap: 30px;
+                padding: 0;
+                z-index: 120;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-8px);
+                transition: opacity 0.28s ease, transform 0.28s ease;
             }
-            .top-nav a { font-size: 10px; letter-spacing: 1.5px; }
+
+            body.nav-open .top-nav {
+                opacity: 1;
+                pointer-events: auto;
+                transform: none;
+            }
+
+            .top-nav a,
+            .top-nav.scrolled a {
+                color: var(--dark);
+                text-shadow: none;
+                font-size: 20px;
+                letter-spacing: 3px;
+                font-weight: 700;
+            }
+
             .top-nav.scrolled {
+                background: var(--cream);
+                border: none;
+                padding: 0;
                 justify-content: center;
-                padding: 12px 14px;
             }
         }
+
 
         /* ── HEADER ── */
         header {
@@ -844,7 +906,7 @@
         .toggle-btn:hover:not(.active) {
             background: var(--red-light);
         }
-        /* ── GALLERY ── */
+        /* ── GALLERY (masonry) ── */
         .gallery-section {
             padding: 70px 60px;
         }
@@ -856,24 +918,23 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-auto-flow: dense;
-            gap: 18px;
+            grid-auto-rows: 1px;      /* fine unit — JS sets each tile's row span */
+            grid-auto-flow: dense;    /* packs holes left by 2-column videos */
+            column-gap: 18px;
+            row-gap: 0;               /* vertical gutter comes from item margin */
             margin-top: 44px;
         }
-
-        /* fixed slot sizes — set per item in videos.js */
-        .g-item              { grid-column: span 1; aspect-ratio: 4 / 5; }   /* default — all photos */
-        .g-item.g-square     { grid-column: span 1; aspect-ratio: 1 / 1; }
-        .g-item.g-wide       { grid-column: span 2; aspect-ratio: 8 / 5; }
-        .g-item.g-big        { grid-column: span 2; aspect-ratio: 4 / 3; }
-        .g-item.g-tall       { grid-column: span 1; aspect-ratio: 2 / 3; }
-        .g-item.g-banner     { grid-column: span 4; aspect-ratio: 16 / 6; }
 
         .g-item {
             position: relative;
             overflow: hidden;
             background: var(--red-light);
+            grid-column: span 1;
+            margin-bottom: 18px;
         }
+
+        /* horizontal video — the only two-column tile */
+        .g-item.is-landscape { grid-column: span 2; }
 
         .g-item img,
         .g-item video {
@@ -904,16 +965,13 @@
         .g-item:hover .g-caption { opacity: 1; }
 
         @media (max-width: 900px) {
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .g-item.g-wide,
-            .g-item.g-big,
-            .g-item.g-banner { grid-column: span 2; }
-            .g-item.g-banner { aspect-ratio: 16 / 9; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); column-gap: 12px; }
+            .g-item { margin-bottom: 12px; }
+            .g-item.is-landscape { grid-column: span 2; }
         }
 
         @media (max-width: 640px) {
             .gallery-section { padding: 48px 22px; }
-            .gallery-grid { gap: 12px; }
         }
 
         /* ════════ MOBILE / TABLET ════════ */
@@ -1015,6 +1073,10 @@
 </head>
 <body>
 
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
     <nav class="top-nav" id="topNav">
         <a href="index.html">About</a>
         <a href="gallery.html">Gallery</a>
@@ -1038,6 +1100,41 @@
 
     <script src="videos.js?v=2"></script>
     <script>
+/* ── MASONRY ──
+   Photos are all the same shape (4:5). Videos come in two sizes:
+   vertical = 1 column, horizontal = 2 columns. Each tile's height is its
+   true aspect ratio and its grid row-span is derived from that, so tiles
+   stack tightly instead of sitting on a fixed row grid. */
+var GAP = 18;
+
+function tileRatio(el) {
+    var v = el.querySelector('video');
+    if (v && v.videoWidth && v.videoHeight) return v.videoHeight / v.videoWidth;
+    return 1.25;   // photos are locked to 4:5
+}
+
+function layoutMasonry() {
+    var grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+    var cs = getComputedStyle(grid);
+    var cols = cs.gridTemplateColumns.split(' ').filter(Boolean);
+    if (!cols.length) return;
+    var colW = parseFloat(cols[0]);
+    var gap  = parseFloat(cs.columnGap) || GAP;
+    if (!colW) return;
+
+    [].forEach.call(grid.children, function (el) {
+        var span = el.classList.contains('is-landscape') ? 2 : 1;
+        var w = (span === 2) ? (colW * 2 + gap) : colW;
+        var h = w * tileRatio(el);
+        el.style.height = h + 'px';
+        el.style.gridRowEnd = 'span ' + Math.ceil(h + gap);
+        el.style.marginBottom = gap + 'px';
+    });
+}
+
+window.addEventListener('resize', layoutMasonry);
+
 /* ── RENDER GALLERY FROM videos.js ── */
         function renderGallery(list) {
             var el = document.getElementById('gallery-grid');
@@ -1046,16 +1143,49 @@
                 var isVideo = /\.(mp4|webm|mov)$/i.test(g.src);
                 var media = isVideo
                     ? '<video src="' + g.src + '" ' + (g.poster ? 'poster="' + g.poster + '" ' : '') +
-                      'muted loop playsinline preload="none"></video>'
+                      'muted loop playsinline preload="metadata"></video>'
                     : '<img src="' + g.src + '" alt="' + (g.caption || '') + '" loading="lazy" />';
                 var cap = g.caption ? '<div class="g-caption">' + g.caption + '</div>' : '';
-                var size = g.size ? ' g-' + g.size : '';
-                return '<div class="g-item' + size + '">' + media + cap + '</div>';
+                return '<div class="g-item">' + media + cap + '</div>';
             }).join('');
+
+            // let each video drive its own slot: portrait keeps 1 column,
+            // landscape widens to 2, and the tile matches the real aspect ratio
+            el.querySelectorAll('video').forEach(function (v) {
+                function fit() {
+                    if (!v.videoWidth || !v.videoHeight) return;
+                    var tile = v.parentElement;
+                    var ratio = v.videoWidth / v.videoHeight;
+                    tile.classList.toggle('is-landscape', ratio > 1.05);
+                    layoutMasonry();
+                }
+                v.addEventListener('loadedmetadata', fit);
+                if (v.readyState >= 1) fit();
+            });
+
+            el.querySelectorAll('img').forEach(function (i) {
+                if (i.complete) return;
+                i.addEventListener('load', layoutMasonry);
+            });
+
+            layoutMasonry();
         }
 
-        if (typeof VIDEOS !== 'undefined' && VIDEOS.gallery) {
-            renderGallery(VIDEOS.gallery);
+        // Always get fresh data: if the cached videos.js is stale (no gallery list),
+        // re-fetch it with a cache-busting timestamp before rendering.
+        async function loadVideoData() {
+            if (typeof VIDEOS !== 'undefined' && VIDEOS.gallery && VIDEOS.gallery.length) return VIDEOS;
+            try {
+                var txt = await fetch('videos.js?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.text(); });
+                return new Function(txt + '; return VIDEOS;')();
+            } catch (e) {
+                return (typeof VIDEOS !== 'undefined') ? VIDEOS : null;
+            }
+        }
+
+        loadVideoData().then(function (V) {
+            if (!V || !V.gallery) return;
+            renderGallery(V.gallery);
             if ('IntersectionObserver' in window) {
                 var io = new IntersectionObserver(function (entries) {
                     entries.forEach(function (e) {
@@ -1066,7 +1196,23 @@
                 }, { rootMargin: '200px' });
                 document.querySelectorAll('#gallery-grid video').forEach(function (v) { io.observe(v); });
             }
-        }
+        });
+
+        // Mobile menu
+        (function () {
+            var btn = document.getElementById('navToggle');
+            if (!btn) return;
+            btn.addEventListener('click', function () {
+                var open = document.body.classList.toggle('nav-open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            document.querySelectorAll('.top-nav a').forEach(function (a) {
+                a.addEventListener('click', function () {
+                    document.body.classList.remove('nav-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
     </script>
 </body>
 </html>
