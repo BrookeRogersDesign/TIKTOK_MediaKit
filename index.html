@@ -118,12 +118,52 @@
         .top-nav.scrolled a:hover { color: var(--red); opacity: 1; }
 
 
+
+        /* extra items shown only inside the mobile menu */
+        .nav-extra { display: none; }
+
+        @media (max-width: 700px) {
+            .nav-extra {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 22px;
+                margin-top: 6px;
+            }
+
+            .nav-divider {
+                width: 40px;
+                height: 1px;
+                background: var(--red);
+                margin: 8px 0 2px;
+            }
+
+            .nav-extra a {
+                font-size: 13px !important;
+                letter-spacing: 2.5px !important;
+                font-weight: 600 !important;
+                color: var(--dark);
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .nav-email {
+                margin-top: 14px;
+                font-size: 11px !important;
+                letter-spacing: 1.5px !important;
+                text-transform: none !important;
+                color: var(--red) !important;
+                font-weight: 600 !important;
+            }
+        }
+
         /* ── MOBILE NAV (hamburger + full-screen sheet) ── */
         .nav-toggle {
             display: none;
             position: fixed;
             top: 14px;
-            right: 14px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 130;
             width: 44px;
             height: 44px;
@@ -1087,6 +1127,14 @@
         <a href="https://paperhearts.club/" target="_blank" rel="noopener">Stationery</a>
         <a href="https://open.spotify.com/user/brookerogers27" target="_blank" rel="noopener">Soundtrack</a>
         <a onclick="goTo('contact')">Contact</a>
+
+        <div class="nav-extra">
+            <div class="nav-divider"></div>
+            <a onclick="switchPage('content')">Content</a>
+            <a onclick="switchPage('analytics')">Analytics</a>
+            <a onclick="switchPage('contact')">Contact</a>
+            <a href="mailto:brooke@brookerogersdesign.com" class="nav-email">brooke@brookerogersdesign.com</a>
+        </div>
     </nav>
 
     <!-- HEADER -->
