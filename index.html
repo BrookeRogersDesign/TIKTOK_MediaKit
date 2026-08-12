@@ -854,6 +854,78 @@
         .toggle-btn:hover:not(.active) {
             background: var(--red-light);
         }
+        /* ── GALLERY ── */
+        .gallery-section {
+            padding: 70px 60px;
+        }
+
+        .gallery-section .inner { max-width: 1400px; margin: 0 auto; }
+        .gallery-section .section-label,
+        .gallery-section .section-title { text-align: center; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-flow: dense;
+            gap: 18px;
+            margin-top: 44px;
+        }
+
+        /* fixed slot sizes — set per item in videos.js */
+        .g-item              { grid-column: span 1; aspect-ratio: 4 / 5; }   /* default — all photos */
+        .g-item.g-square     { grid-column: span 1; aspect-ratio: 1 / 1; }
+        .g-item.g-wide       { grid-column: span 2; aspect-ratio: 8 / 5; }
+        .g-item.g-big        { grid-column: span 2; aspect-ratio: 4 / 3; }
+        .g-item.g-tall       { grid-column: span 1; aspect-ratio: 2 / 3; }
+        .g-item.g-banner     { grid-column: span 4; aspect-ratio: 16 / 6; }
+
+        .g-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--red-light);
+        }
+
+        .g-item img,
+        .g-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .g-item:hover img,
+        .g-item:hover video { transform: scale(1.04); }
+
+        .g-caption {
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            padding: 14px 16px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--white);
+            background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .g-item:hover .g-caption { opacity: 1; }
+
+        @media (max-width: 900px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .g-item.g-wide,
+            .g-item.g-big,
+            .g-item.g-banner { grid-column: span 2; }
+            .g-item.g-banner { aspect-ratio: 16 / 9; }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-section { padding: 48px 22px; }
+            .gallery-grid { gap: 12px; }
+        }
+
         /* ════════ MOBILE / TABLET ════════ */
         @media (max-width: 900px) {
             .metrics-grid,
@@ -939,6 +1011,7 @@
     <!-- TOP NAV -->
     <nav class="top-nav" id="topNav">
         <a onclick="goTo('about')">About</a>
+        <a onclick="goTo('gallery')">Gallery</a>
         <a href="https://paperhearts.club/" target="_blank" rel="noopener">Stationery</a>
         <a href="https://open.spotify.com/user/brookerogers27" target="_blank" rel="noopener">Soundtrack</a>
         <a onclick="goTo('contact')">Contact</a>
@@ -1292,6 +1365,18 @@
     </div><!-- end content tab -->
 
     <!-- ═══════════════ CONTACT TAB ═══════════════ -->
+    <div class="tab-content" id="page-gallery">
+
+    <section class="gallery-section">
+        <div class="inner">
+            <span class="section-label">Gallery</span>
+            <div class="section-title">Selected Work</div>
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    </div><!-- end gallery tab -->
+
     <div class="tab-content" id="page-contact">
 
     <section class="contact-section">
@@ -1345,12 +1430,11 @@
         }
 
         function switchPage(tab) {
-            document.getElementById('page-analytics').classList.toggle('active', tab === 'analytics');
-            document.getElementById('page-content').classList.toggle('active', tab === 'content');
-            document.getElementById('page-contact').classList.toggle('active', tab === 'contact');
-            document.getElementById('tab-analytics').classList.toggle('active', tab === 'analytics');
-            document.getElementById('tab-content').classList.toggle('active', tab === 'content');
-            document.getElementById('tab-contact').classList.toggle('active', tab === 'contact');
+            ['content','analytics','gallery','contact'].forEach(function (t) {
+                document.getElementById('page-' + t).classList.toggle('active', t === tab);
+                var btn = document.getElementById('tab-' + t);
+                if (btn) btn.classList.toggle('active', t === tab);
+            });
         }
 
         /* ── RENDER VIDEO RAILS FROM videos.js ── */
@@ -1387,12 +1471,44 @@
             renderRail('rail-engagement', VIDEOS.rails.engagement);
         }
 
+        /* ── RENDER GALLERY FROM videos.js ── */
+        function renderGallery(list) {
+            var el = document.getElementById('gallery-grid');
+            if (!el || !list) return;
+            el.innerHTML = list.map(function (g) {
+                var isVideo = /\.(mp4|webm|mov)$/i.test(g.src);
+                var media = isVideo
+                    ? '<video src="' + g.src + '" ' + (g.poster ? 'poster="' + g.poster + '" ' : '') +
+                      'muted loop playsinline preload="none"></video>'
+                    : '<img src="' + g.src + '" alt="' + (g.caption || '') + '" loading="lazy" />';
+                var cap = g.caption ? '<div class="g-caption">' + g.caption + '</div>' : '';
+                var size = g.size ? ' g-' + g.size : '';
+                return '<div class="g-item' + size + '">' + media + cap + '</div>';
+            }).join('');
+        }
+
+        if (typeof VIDEOS !== 'undefined' && VIDEOS.gallery) {
+            renderGallery(VIDEOS.gallery);
+
+            // only play clips that are actually on screen — keeps mobile smooth
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        var v = e.target;
+                        if (e.isIntersecting) { v.play().catch(function () {}); }
+                        else { v.pause(); }
+                    });
+                }, { rootMargin: '200px' });
+                document.querySelectorAll('#gallery-grid video').forEach(function (v) { io.observe(v); });
+            }
+        }
+
         // Nav: scroll to about, or open + scroll to contact tab
         function goTo(target) {
             if (target === 'about') {
                 document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-            } else if (target === 'contact') {
-                switchPage('contact');
+            } else if (target === 'contact' || target === 'gallery') {
+                switchPage(target);
                 setTimeout(function () {
                     document.querySelector('.page-tabs').scrollIntoView({ behavior: 'smooth' });
                 }, 60);
