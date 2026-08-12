@@ -16,6 +16,58 @@ const VIDEOS = {
 
   profile: "https://www.tiktok.com/@brookerogers27",
 
+  /* ═══════════════ GALLERY ═══════════════
+     Drop files in a /gallery folder, then list them here.
+     Stills and videos both work — .mp4/.webm/.mov autoplay muted on loop.
+
+     size options (leave blank for the standard photo slot):
+       (none)     1 column,  4:5   <- all photos use this
+       "tall"     1 column,  2:3
+       "square"   1 column,  1:1
+       "wide"     2 columns, 8:5   <- good for video
+       "big"      2 columns, 4:3
+       "banner"   4 columns, 16:6  full-width strip
+
+     caption is optional — shows on hover, leave "" for none.
+     poster is optional — a still shown while a video loads.
+  ═══════════════════════════════════════ */
+  gallery: [
+    { src: "gallery/Tezza-0384.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-0806.JPG", size: "", caption: "" },
+    { src: "gallery/img_2010-2.mp4", size: "wide", caption: "" },
+    { src: "gallery/img_4994.mp4", size: "wide", caption: "" },
+    { src: "gallery/Tezza-0898.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-1302.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-1447.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-1481.JPG", size: "", caption: "" },
+    { src: "gallery/img_8057.mp4", size: "wide", caption: "" },
+    { src: "gallery/img_8061.mp4", size: "wide", caption: "" },
+    { src: "gallery/Tezza-1867.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-2269.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-2604.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-3444.JPG", size: "", caption: "" },
+    { src: "gallery/img_8062.mp4", size: "wide", caption: "" },
+    { src: "gallery/img_8065.mp4", size: "wide", caption: "" },
+    { src: "gallery/Tezza-3578.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-3772.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-5495.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-5933.JPG", size: "", caption: "" },
+    { src: "gallery/img_8078.mp4", size: "wide", caption: "" },
+    { src: "gallery/img_8156.mp4", size: "wide", caption: "" },
+    { src: "gallery/Tezza-6306.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-6336.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-6649.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-8567.JPG", size: "", caption: "" },
+    { src: "gallery/img_8234.mp4", size: "wide", caption: "" },
+    { src: "gallery/img_8403.mp4", size: "wide", caption: "" },
+    { src: "gallery/Tezza-9014.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-9205.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-9424.JPG", size: "", caption: "" },
+    { src: "gallery/Tezza-9609.JPG", size: "", caption: "" },
+    { src: "gallery/img_8453.mp4", size: "wide", caption: "" },
+    { src: "gallery/49a724b7-e453-41fb-931f-3823ff3f0bed.mp4", size: "", caption: "" }
+  ],
+
   rails: {
 
     /* ── TOP PERFORMING (Overall toggle) ── */
