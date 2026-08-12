@@ -21,7 +21,7 @@
             background-color: var(--cream);
             color: var(--dark);
             font-family: 'Jost', sans-serif;
-            font-weight: 500;
+            font-weight: 600;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -33,6 +33,11 @@
         }
 
         header img {
+            width: 100%;
+            display: block;
+        }
+
+        header video {
             width: 100%;
             display: block;
         }
@@ -59,7 +64,7 @@
             color: var(--red);
             margin-bottom: 16px;
             display: block;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .section-title {
@@ -125,7 +130,7 @@
             text-transform: uppercase;
             color: var(--dark);
             opacity: 0.5;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         /* ── PILLARS ── */
@@ -181,7 +186,7 @@
             margin-bottom: 22px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--red-border);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .audience-row {
@@ -239,7 +244,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             opacity: 0.45;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* ── WHY PARTNER ── */
@@ -315,7 +320,7 @@
             font-size: 12px;
             line-height: 1.6;
             margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark);
             font-style: italic;
         }
@@ -340,7 +345,7 @@
             color: var(--dark);
             opacity: 0.45;
             margin-top: 4px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* ── OFFERINGS ── */
@@ -411,7 +416,7 @@
             font-size: 11px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
             border: none;
             background: transparent;
             color: var(--dark);
@@ -434,6 +439,87 @@
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+
+        /* ── CONTACT FORM ── */
+        .contact-section {
+            padding: 90px 60px;
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-family: 'Jost', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--dark);
+            background: var(--white);
+            border: 1px solid var(--red-border);
+            outline: none;
+            transition: border-color 0.2s;
+            letter-spacing: 0.3px;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--red);
+        }
+
+        .form-textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: inline-block;
+            padding: 16px 56px;
+            font-family: 'Jost', sans-serif;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            background: var(--red);
+            color: var(--white);
+            border: 1px solid var(--red);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            background: transparent;
+            color: var(--red);
+        }
+
+        .contact-note {
+            margin-top: 48px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            opacity: 0.45;
+            line-height: 1.8;
+        }
 
         /* ── ANALYTICS DETAIL ── */
         .analytics-grid {
@@ -467,14 +553,14 @@
             text-transform: uppercase;
             color: var(--dark);
             opacity: 0.5;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .analytics-change {
             font-size: 11px;
             color: #2a9d4e;
             margin-top: 6px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .traffic-section {
@@ -496,7 +582,7 @@
             letter-spacing: 0.5px;
             min-width: 120px;
             opacity: 0.75;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .traffic-pct {
@@ -524,7 +610,35 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             opacity: 0.45;
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            padding: 50px 60px;
+            text-align: center;
+            border-top: 1px solid var(--red-border);
+        }
+
+        .footer-text {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.4;
+            line-height: 2.2;
+        }
+
+        .footer-email {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--red);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-email:hover {
+            opacity: 1;
         }
 
         /* ── VIDEO LINKS ── */
@@ -558,7 +672,7 @@
             font-size: 10px;
             letter-spacing: 4px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
             border: none;
             background: transparent;
             color: var(--red);
@@ -581,7 +695,9 @@
 
     <!-- HEADER -->
     <header>
-        <img src="Media Kit Cover.jpg" alt="Brooke Rogers Media Kit" />
+        <video autoplay muted loop playsinline>
+            <source src="TikTok-Header-01.mp4" type="video/mp4">
+        </video>
     </header>
 
     <!-- BIO -->
@@ -598,6 +714,7 @@
     <nav class="page-tabs">
         <button class="page-tab active" onclick="switchPage('analytics')" id="tab-analytics">Analytics</button>
         <button class="page-tab" onclick="switchPage('content')" id="tab-content">Content</button>
+        <button class="page-tab" onclick="switchPage('contact')" id="tab-contact">Contact</button>
     </nav>
 
     <!-- ═══════════════ ANALYTICS TAB ═══════════════ -->
@@ -1187,19 +1304,57 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <img src="Footer.jpg" alt="Brooke Rogers Footer" style="width:100%; display:block;" />
-    </footer>
-
     </div><!-- end content tab -->
+
+    <!-- ═══════════════ CONTACT TAB ═══════════════ -->
+    <div class="tab-content" id="page-contact">
+
+    <section class="contact-section">
+        <span class="section-label">Get In Touch</span>
+        <div class="section-title">Let's Work Together</div>
+        <p style="font-size: 14px; line-height: 1.8; opacity: 0.65; max-width: 480px; margin: 0 auto;">
+            Interested in a collaboration? Fill out the form below and I'll get back to you within 48 hours.
+        </p>
+
+        <form class="contact-form" action="https://formspree.io/f/xdenzkqo" method="POST">
+            <div class="form-group">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-input" type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-textarea" id="message" name="message" required></textarea>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="form-submit">Send</button>
+            </div>
+        </form>
+
+        <p class="contact-note">
+            You can also reach me directly at brooke@brookerogersdesign.com
+        </p>
+    </section>
+
+    </div><!-- end contact tab -->
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-text">Brooke Rogers Media Kit · A Touch of Home 2026</div>
+        <a href="mailto:brooke@brookerogersdesign.com" class="footer-email">brooke@brookerogersdesign.com</a>
+    </footer>
 
     <script>
         function switchPage(tab) {
             document.getElementById('page-analytics').classList.toggle('active', tab === 'analytics');
             document.getElementById('page-content').classList.toggle('active', tab === 'content');
+            document.getElementById('page-contact').classList.toggle('active', tab === 'contact');
             document.getElementById('tab-analytics').classList.toggle('active', tab === 'analytics');
             document.getElementById('tab-content').classList.toggle('active', tab === 'content');
+            document.getElementById('tab-contact').classList.toggle('active', tab === 'contact');
         }
     </script>
 
