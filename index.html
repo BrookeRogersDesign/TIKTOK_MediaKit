@@ -25,11 +25,110 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ── TOP NAV ── */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            padding: 26px 44px;
+            transition: background 0.3s ease;
+        }
+
+        .top-nav a {
+            font-family: 'Jost', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--white);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.45);
+            transition: color 0.25s ease, opacity 0.25s ease;
+            cursor: pointer;
+        }
+
+        .top-nav a:hover { opacity: 0.6; }
+
+        /* once scrolled past the video */
+        .top-nav.scrolled {
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--red-border);
+            left: 0;
+            justify-content: flex-end;
+            padding: 18px 44px;
+        }
+
+        .top-nav.scrolled a {
+            color: var(--dark);
+            text-shadow: none;
+        }
+
+        .top-nav.scrolled a:hover { color: var(--red); opacity: 1; }
+
+        .nav-toggle { display: none; }
+
+        @media (max-width: 700px) {
+            .top-nav {
+                gap: 14px;
+                padding: 16px 18px;
+            }
+            .top-nav a { font-size: 10px; letter-spacing: 1.5px; }
+            .top-nav.scrolled { padding: 12px 18px; }
+        }
+
         /* ── HEADER ── */
         header {
             width: 100%;
             line-height: 0;
             font-size: 0;
+            position: relative;
+        }
+
+        .header-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .header-overlay span {
+            font-family: 'Jost', sans-serif;
+            font-size: clamp(28px, 7vw, 96px);
+            letter-spacing: clamp(1px, 0.5vw, 8px);
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--white);
+            text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+            line-height: 1;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Signature variant — add class="signature" to the overlay span to switch */
+        .header-overlay span.signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(46px, 11vw, 150px);
+            letter-spacing: 0;
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        /* Signature image variant */
+        .header-overlay img {
+            width: clamp(180px, 34vw, 460px);
+            height: auto;
+            filter: drop-shadow(0 2px 24px rgba(0,0,0,0.35));
+        }
+
+        @media (max-width: 700px) {
+            .header-overlay span { letter-spacing: 2px; }
         }
 
         header img {
@@ -122,6 +221,7 @@
             color: var(--red);
             line-height: 1;
             margin-bottom: 12px;
+            font-weight: 400;
         }
 
         .metric-label {
@@ -130,7 +230,7 @@
             text-transform: uppercase;
             color: var(--dark);
             opacity: 0.5;
-            font-weight: 700;
+            font-weight: 400;
         }
 
         /* ── PILLARS ── */
@@ -155,6 +255,7 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             transition: all 0.2s;
+            font-weight: 700;
         }
 
         .pillar-tag:hover {
@@ -186,7 +287,7 @@
             margin-bottom: 22px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--red-border);
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .audience-row {
@@ -202,6 +303,7 @@
             letter-spacing: 0.5px;
             min-width: 70px;
             opacity: 0.75;
+            font-weight: 400;
         }
 
         .bar-track {
@@ -223,6 +325,7 @@
             color: var(--red);
             min-width: 36px;
             text-align: right;
+            font-weight: 400;
         }
 
         /* ── GROWTH ── */
@@ -237,6 +340,7 @@
             color: var(--red);
             line-height: 1;
             margin: 16px 0 12px;
+            font-weight: 400;
         }
 
         .growth-sub {
@@ -244,7 +348,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             opacity: 0.45;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         /* ── WHY PARTNER ── */
@@ -310,6 +414,7 @@
             text-transform: uppercase;
             color: var(--red);
             opacity: 0.6;
+            font-weight: 700;
         }
 
         .video-info {
@@ -336,6 +441,7 @@
             font-size: 18px;
             color: var(--red);
             line-height: 1;
+            font-weight: 400;
         }
 
         .video-stat-lbl {
@@ -345,7 +451,7 @@
             color: var(--dark);
             opacity: 0.45;
             margin-top: 4px;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         /* ── OFFERINGS ── */
@@ -378,6 +484,7 @@
             font-size: 20px;
             color: var(--red);
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .offering-desc {
@@ -416,7 +523,7 @@
             font-size: 11px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             background: transparent;
             color: var(--dark);
@@ -545,6 +652,7 @@
             color: var(--red);
             line-height: 1;
             margin-bottom: 6px;
+            font-weight: 400;
         }
 
         .analytics-label {
@@ -553,14 +661,14 @@
             text-transform: uppercase;
             color: var(--dark);
             opacity: 0.5;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .analytics-change {
             font-size: 11px;
             color: #2a9d4e;
             margin-top: 6px;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .traffic-section {
@@ -582,7 +690,7 @@
             letter-spacing: 0.5px;
             min-width: 120px;
             opacity: 0.75;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .traffic-pct {
@@ -591,6 +699,7 @@
             color: var(--red);
             min-width: 50px;
             text-align: right;
+            font-weight: 400;
         }
 
         .time-highlight {
@@ -603,6 +712,7 @@
             font-size: 48px;
             color: var(--red);
             margin-bottom: 8px;
+            font-weight: 400;
         }
 
         .time-detail {
@@ -610,7 +720,7 @@
             letter-spacing: 4px;
             text-transform: uppercase;
             opacity: 0.45;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         /* ── FOOTER ── */
@@ -672,7 +782,7 @@
             font-size: 10px;
             letter-spacing: 4px;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             background: transparent;
             color: var(--red);
@@ -693,15 +803,24 @@
 <body>
 
 
+    <!-- TOP NAV -->
+    <nav class="top-nav" id="topNav">
+        <a onclick="goTo('about')">About</a>
+        <a href="https://paperhearts.club/" target="_blank" rel="noopener">Stationery</a>
+        <a href="https://open.spotify.com/user/brookerogers27" target="_blank" rel="noopener">Soundtrack</a>
+        <a onclick="goTo('contact')">Contact</a>
+    </nav>
+
     <!-- HEADER -->
     <header>
         <video autoplay muted loop playsinline>
             <source src="TikTok-Header-01.mp4" type="video/mp4">
         </video>
+        <div class="header-overlay"><span>Media Kit</span></div>
     </header>
 
     <!-- BIO -->
-    <section class="bio-section">
+    <section class="bio-section" id="about">
         <span class="section-label" style="text-align:center; display:block;">About</span>
         <p class="bio-text">
             I'm Brooke — a graphic designer & content creator based in St. Pete, Florida. I make TikToks about home, space, and the art of everyday living: the spaces I build, the places I love, and the aesthetic I live by.
@@ -1356,6 +1475,31 @@
             document.getElementById('tab-content').classList.toggle('active', tab === 'content');
             document.getElementById('tab-contact').classList.toggle('active', tab === 'contact');
         }
+
+        // Nav: scroll to about, or open + scroll to contact tab
+        function goTo(target) {
+            if (target === 'about') {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            } else if (target === 'contact') {
+                switchPage('contact');
+                setTimeout(function () {
+                    document.querySelector('.page-tabs').scrollIntoView({ behavior: 'smooth' });
+                }, 60);
+            }
+        }
+
+        // Nav turns solid once past the video
+        (function () {
+            var nav = document.getElementById('topNav');
+            var header = document.querySelector('header');
+            function onScroll() {
+                var h = header ? header.offsetHeight : 400;
+                nav.classList.toggle('scrolled', window.scrollY > h - 80);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            onScroll();
+        })();
     </script>
 
 </body>
