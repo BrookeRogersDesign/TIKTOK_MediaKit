@@ -4,17 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brooke Rogers | TikTok Media Kit</title>
+
+    <!-- LINK PREVIEW (iMessage, Slack, socials) -->
+    <meta name="description" content="Graphic designer & content creator in St. Pete, Florida. 12.1K followers · 769K likes · 18% engagement.">
+    <meta name="theme-color" content="#FDF8EC">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Brooke Rogers">
+    <meta property="og:title" content="Brooke Rogers | TikTok Media Kit">
+    <meta property="og:description" content="Graphic designer & content creator in St. Pete, Florida. 12.1K followers · 769K likes · 18% engagement.">
+    <meta property="og:url" content="https://brookerogersdesign.github.io/TIKTOK_MediaKit/">
+    <meta property="og:image" content="https://brookerogersdesign.github.io/TIKTOK_MediaKit/og-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Brooke Rogers TikTok Media Kit">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brooke Rogers | TikTok Media Kit">
+    <meta name="twitter:description" content="Graphic designer & content creator in St. Pete, Florida.">
+    <meta name="twitter:image" content="https://brookerogersdesign.github.io/TIKTOK_MediaKit/og-preview.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* ── RUND (local) ──
+           Trial cut: only A-Z a-z 0-9 space , - .
+           Jost is stacked behind it so % & — ' ( ) / : still render. */
+        @font-face { font-family: 'Rund Display'; src: url('fonts/RundDisplayTRIAL-Bold.otf') format('opentype');      font-weight: 700; font-display: swap; }
+        @font-face { font-family: 'Rund Display'; src: url('fonts/RundDisplayTRIAL-ExtraBold.otf') format('opentype'); font-weight: 800; font-display: swap; }
+        @font-face { font-family: 'Rund Display'; src: url('fonts/RundDisplayTRIAL-Black.otf') format('opentype');     font-weight: 900; font-display: swap; }
+
+        @font-face { font-family: 'Rund Text'; src: url('fonts/RundTextTRIAL-Regular.otf') format('opentype');  font-weight: 400; font-display: swap; }
+        @font-face { font-family: 'Rund Text'; src: url('fonts/RundTextTRIAL-Italic.otf') format('opentype');   font-weight: 400; font-style: italic; font-display: swap; }
+        @font-face { font-family: 'Rund Text'; src: url('fonts/RundTextTRIAL-Medium.otf') format('opentype');   font-weight: 500; font-display: swap; }
+        @font-face { font-family: 'Rund Text'; src: url('fonts/RundTextTRIAL-SemiBold.otf') format('opentype'); font-weight: 600; font-display: swap; }
+        @font-face { font-family: 'Rund Text'; src: url('fonts/RundTextTRIAL-Bold.otf') format('opentype');     font-weight: 700; font-display: swap; }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --cream: #ffffff;
-            --red: #C82E22;
-            --dark: #1C1C1A;
+            --cream: #FDF8EC;        /* light cream — page background */
+            --butter-deep: #FAF1DC;  /* slightly warmer band */
+            --card: #FFFFFF;         /* cards lift off the cream */
+            --red: #FF1B1C;          /* Red — accent */
+            --tangerine: #FF7F11;    /* Vivid Tangerine — bars, hovers */
+            --dark: #262626;         /* Carbon Black — text */
             --white: #ffffff;
-            --red-light: rgba(200, 32, 26, 0.08);
-            --red-border: rgba(200, 32, 26, 0.2);
+            --red-light: rgba(255, 27, 28, 0.08);
+            --red-border: rgba(255, 27, 28, 0.22);
         }
 
         html, body {
@@ -25,7 +60,7 @@
         body {
             background-color: var(--cream);
             color: var(--dark);
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-weight: 600;
             -webkit-font-smoothing: antialiased;
         }
@@ -46,7 +81,7 @@
         }
 
         .top-nav a {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 12px;
             letter-spacing: 2.5px;
             text-transform: uppercase;
@@ -62,7 +97,7 @@
 
         /* once scrolled past the video */
         .top-nav.scrolled {
-            background: rgba(255,255,255,0.94);
+            background: rgba(253, 248, 236, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--red-border);
             left: 0;
@@ -113,11 +148,11 @@
         }
 
         .header-overlay span {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: clamp(28px, 7vw, 96px);
             letter-spacing: clamp(1px, 0.5vw, 8px);
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 900;
             color: var(--white);
             text-shadow: 0 2px 30px rgba(0,0,0,0.4);
             line-height: 1;
@@ -174,17 +209,18 @@
             font-size: 10px;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: var(--red);
+            color: var(--dark);
             margin-bottom: 16px;
             display: block;
             font-weight: 700;
         }
 
         .section-title {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 42px;
             color: var(--red);
             margin-bottom: 40px;
+            font-weight: 800;
         }
 
         /* ── BIO ── */
@@ -196,7 +232,7 @@
         }
 
         .bio-text {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 21px;
             line-height: 1.75;
             color: var(--dark);
@@ -223,19 +259,19 @@
         .metric-card {
             padding: 44px 20px;
             border: 1px solid var(--red-border);
-            background: var(--cream);
+            background: var(--card);
             transition: background 0.2s;
         }
 
         .metric-card:hover { background: var(--red-light); }
 
         .metric-number {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 54px;
             color: var(--red);
             line-height: 1;
             margin-bottom: 12px;
-            font-weight: 400;
+            font-weight: 800;
         }
 
         .metric-label {
@@ -297,7 +333,7 @@
             font-size: 9px;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--red);
+            color: var(--dark);
             margin-bottom: 22px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--red-border);
@@ -329,17 +365,17 @@
 
         .bar-fill {
             height: 5px;
-            background: var(--red);
+            background: var(--tangerine);
             border-radius: 3px;
         }
 
         .audience-pct {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 15px;
             color: var(--red);
             min-width: 36px;
             text-align: right;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         /* ── GROWTH ── */
@@ -349,12 +385,12 @@
         }
 
         .growth-big {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: clamp(80px, 12vw, 140px);
             color: var(--red);
             line-height: 1;
             margin: 16px 0 12px;
-            font-weight: 400;
+            font-weight: 800;
         }
 
         .growth-sub {
@@ -375,7 +411,7 @@
         .why-section .section-label { color: rgba(255,255,255,0.55); }
 
         .why-text {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 24px;
             color: var(--white);
             line-height: 1.75;
@@ -390,7 +426,7 @@
             padding: 70px 60px;
         }
 
-        .videos-section.alt { background: var(--cream); }
+        .videos-section.alt { background: var(--butter-deep); }
 
         .videos-section .inner { max-width: 1020px; margin: 0 auto; }
 
@@ -404,7 +440,7 @@
         .video-card {
             border: 1px solid var(--red-border);
             overflow: hidden;
-            background: var(--cream);
+            background: var(--card);
         }
 
         .video-thumb {
@@ -439,7 +475,7 @@
             font-size: 12px;
             line-height: 1.6;
             margin-bottom: 16px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--dark);
             font-style: italic;
         }
@@ -451,11 +487,11 @@
         }
 
         .video-stat-val {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 18px;
             color: var(--red);
             line-height: 1;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         .video-stat-lbl {
@@ -487,14 +523,14 @@
         .offering-item {
             padding: 32px;
             border: 1px solid var(--red-border);
-            background: var(--cream);
+            background: var(--card);
             transition: border-color 0.2s;
         }
 
         .offering-item:hover { border-color: var(--red); }
 
         .offering-title {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 20px;
             color: var(--red);
             margin-bottom: 10px;
@@ -533,7 +569,7 @@
 
         .page-tab {
             padding: 18px 48px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 11px;
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -592,11 +628,11 @@
         .form-textarea {
             width: 100%;
             padding: 16px 20px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 14px;
             font-weight: 400;
             color: var(--dark);
-            background: var(--white);
+            background: var(--card);
             border: 1px solid var(--red-border);
             outline: none;
             transition: border-color 0.2s;
@@ -616,7 +652,7 @@
         .form-submit {
             display: inline-block;
             padding: 16px 56px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 10px;
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -654,6 +690,7 @@
         .analytics-card {
             padding: 36px 24px;
             border: 1px solid var(--red-border);
+            background: var(--card);
             text-align: center;
             transition: background 0.2s;
         }
@@ -661,12 +698,12 @@
         .analytics-card:hover { background: var(--red-light); }
 
         .analytics-val {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 38px;
             color: var(--red);
             line-height: 1;
             margin-bottom: 6px;
-            font-weight: 400;
+            font-weight: 800;
         }
 
         .analytics-label {
@@ -708,12 +745,12 @@
         }
 
         .traffic-pct {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 18px;
             color: var(--red);
             min-width: 50px;
             text-align: right;
-            font-weight: 400;
+            font-weight: 700;
         }
 
         .time-highlight {
@@ -722,11 +759,11 @@
         }
 
         .time-day {
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Display', 'Jost', sans-serif;
             font-size: 48px;
             color: var(--red);
             margin-bottom: 8px;
-            font-weight: 400;
+            font-weight: 800;
         }
 
         .time-detail {
@@ -792,7 +829,7 @@
 
         .toggle-btn {
             padding: 12px 36px;
-            font-family: 'Jost', sans-serif;
+            font-family: 'Rund Text', 'Jost', sans-serif;
             font-size: 10px;
             letter-spacing: 4px;
             text-transform: uppercase;
@@ -1204,188 +1241,10 @@
             </div>
 
             <!-- OVERALL VIDEOS -->
-            <div class="videos-grid" id="tab-overall">
-
-                <a href="https://www.tiktok.com/t/ZTkfLpW2r/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="overall-1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">I could never be a man</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">250K</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">903.6K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">12.7K</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">11.7K</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfLVYEL/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="overall-2.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">How I Built a Breakfast Nook</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">78.3K</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">936.4K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">6,809</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">20.8K</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfLf1Wc/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="overall-3.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Listening to Real Music</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">64.8K</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">324K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">1,929</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">8,320</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-            </div>
+            <div class="videos-grid" id="rail-overall"></div>
 
             <!-- LATELY VIDEOS -->
-            <div class="videos-grid" id="tab-lately" style="display:none;">
-
-                <a href="https://www.tiktok.com/t/ZTkfLm6m9/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="lately-1.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Enjoying my Space</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">44.9K</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">179K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">1,969</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">3,805</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfj6175/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="lately-2.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">So Happy To Be Here</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">3,705</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">23K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">128</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">28</div>
-                                <div class="video-stat-lbl">Comments</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfjf4vg/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="lately-3.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Just a girl obsessed with her home</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">852</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">5,035</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">2</div>
-                                <div class="video-stat-lbl">Shares</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">66</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-            </div>
+            <div class="videos-grid" id="rail-lately" style="display:none;"></div>
         </div>
     </section>
 
@@ -1394,96 +1253,7 @@
         <div class="inner">
             <span class="section-label">Top Performing</span>
             <div class="section-title">Best Engagement</div>
-            <div class="videos-grid">
-
-                <a href="https://www.tiktok.com/t/ZTkfjpTdC/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="engagement-1.jpg.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">I love having adult money</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">8.1%</div>
-                                <div class="video-stat-lbl">Eng. Rate</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">534</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">7,109</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">34</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfjPaPR/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="engagement-2.jpg.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Fomo Doesn't Exist Here</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">24.5%</div>
-                                <div class="video-stat-lbl">Eng. Rate</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">5,252</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">23.9K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">500</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-                <a href="https://www.tiktok.com/t/ZTkfjm8jv/" target="_blank" class="video-card-link">
-                <div class="video-card">
-                    <div class="video-thumb" style="background:none; padding:0;">
-                        <img src="engagement-3.jpg.jpg" style="width:100%; height:100%; object-fit:cover; display:block;" />
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Just a girl & her apartment</div>
-                        <div class="video-stats">
-                            <div>
-                                <div class="video-stat-val">15.2%</div>
-                                <div class="video-stat-lbl">Eng. Rate</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">2,108</div>
-                                <div class="video-stat-lbl">Likes</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">15.6K</div>
-                                <div class="video-stat-lbl">Views</div>
-                            </div>
-                            <div>
-                                <div class="video-stat-val">143</div>
-                                <div class="video-stat-lbl">Saves</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </a>
-
-            </div>
+            <div class="videos-grid" id="rail-engagement"></div>
         </div>
     </section>
 
@@ -1557,7 +1327,18 @@
         <a href="mailto:brooke@brookerogersdesign.com" class="footer-email">brooke@brookerogersdesign.com</a>
     </footer>
 
+    <!-- VIDEO DATA — edit videos.js to change what appears on the Content tab -->
+    <script src="videos.js"></script>
+
     <script>
+        /* Overall / Lately toggle */
+        function switchTab(which) {
+            document.getElementById('rail-overall').style.display = (which === 'overall') ? '' : 'none';
+            document.getElementById('rail-lately').style.display  = (which === 'lately')  ? '' : 'none';
+            document.getElementById('btn-overall').classList.toggle('active', which === 'overall');
+            document.getElementById('btn-lately').classList.toggle('active', which === 'lately');
+        }
+
         function switchPage(tab) {
             document.getElementById('page-analytics').classList.toggle('active', tab === 'analytics');
             document.getElementById('page-content').classList.toggle('active', tab === 'content');
@@ -1565,6 +1346,40 @@
             document.getElementById('tab-analytics').classList.toggle('active', tab === 'analytics');
             document.getElementById('tab-content').classList.toggle('active', tab === 'content');
             document.getElementById('tab-contact').classList.toggle('active', tab === 'contact');
+        }
+
+        /* ── RENDER VIDEO RAILS FROM videos.js ── */
+        function renderRail(elId, list) {
+            var el = document.getElementById(elId);
+            if (!el || !list) return;
+            el.innerHTML = list.map(function (v) {
+                var media = v.clip
+                    ? '<video src="' + v.clip + '" poster="' + (v.cover || '') + '" autoplay muted loop playsinline ' +
+                      'style="width:100%; height:100%; object-fit:cover; display:block;"></video>'
+                    : '<img src="' + (v.cover || '') + '" alt="' + v.title + '" loading="lazy" ' +
+                      'style="width:100%; height:100%; object-fit:cover; display:block;" />';
+
+                var stats = (v.stats || []).map(function (s) {
+                    return '<div><div class="video-stat-val">' + s.val + '</div>' +
+                           '<div class="video-stat-lbl">' + s.lbl + '</div></div>';
+                }).join('');
+
+                return '<a href="' + v.link + '" target="_blank" rel="noopener" class="video-card-link">' +
+                         '<div class="video-card">' +
+                           '<div class="video-thumb" style="background:none; padding:0;">' + media + '</div>' +
+                           '<div class="video-info">' +
+                             '<div class="video-title">' + v.title + '</div>' +
+                             '<div class="video-stats">' + stats + '</div>' +
+                           '</div>' +
+                         '</div>' +
+                       '</a>';
+            }).join('');
+        }
+
+        if (typeof VIDEOS !== 'undefined') {
+            renderRail('rail-overall',    VIDEOS.rails.overall);
+            renderRail('rail-lately',     VIDEOS.rails.lately);
+            renderRail('rail-engagement', VIDEOS.rails.engagement);
         }
 
         // Nav: scroll to about, or open + scroll to contact tab
